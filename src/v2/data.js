@@ -69,8 +69,7 @@ export const models = [
           "Tri Motor All-Wheel Drive"
         ]
       },
-    ],
-    interiorColors: interiorColors
+    ]
   },
   {
     key: 'x',
@@ -173,23 +172,18 @@ export const initialConfig = {
     car_type: "long_range_plus",
     model: "s",
     color: "white",
-    wheels: "wheel_1",
-    interior_color: "all_black"
+    wheels: "wheel_1"
   },
   'x': {
     car_type: "long_range_plus",
     model: "x",
     color: "white",
-    wheels: "wheel_1",
-    interior_color: "all_black",
-    interior_layout: "five_seat"
+    wheels: "wheel_1"
   },
   'y': {
     car_type: "long_range",
     model: "y",
     color: "white",
-    wheels: "wheel_1",
-    interior_color: "all_black",
-    interior_layout: "five_seat"
+    wheels: "wheel_1"
   }
 };
