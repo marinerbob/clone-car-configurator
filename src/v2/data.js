@@ -1,32 +1,42 @@
-export const colors = [
-  { label: "Pearl White Multi-Coat", value: "white", price: 0 },
-  { label: "Solid Black", value: "black", price: 1500 },
-  { label: "Midnight Silver Metallic", value: "silver", price: 1500 },
-  { label: "Deep Blue Metallic", value: "blue", price: 1500 },
-  { label: "Red Multi-Coat", value: "red", price: 2500 }
-];
+export const colors = {
+  'white': {
+    label: "Pearl White Multi-Coat", value: "white", price: 0
+  },
+  'black': {
+    label: "Solid Black", value: "black", price: 1500
+  },
+  'silver': {
+    label: "Midnight Silver Metallic", value: "silver", price: 1500
+  },
+  'blue': {
+    label: "Deep Blue Metallic", value: "blue", price: 1500
+  },
+  'red': {
+    label: "Red Multi-Coat", value: "red", price: 2500
+  }
+};
 
-export const models = [
-  {
+export const models = {
+  's': {
     key: 's',
     name: "Model S",
     colors: colors,
-    wheels: [
-      {
+    wheels: {
+      'wheel_1': {
         src: `${process.env.PUBLIC_URL}/wheels/model_s/model_s_wheel_1.png`,
         label: '19" Tempest Wheels',
         value: "wheel_1",
         price: 0
       },
-      {
+      'wheel_2': {
         src: `${process.env.PUBLIC_URL}/wheels/model_s/model_s_wheel_2.png`,
         label: '21" Sonic Carbon Twin Turbine Wheels',
         value: "wheel_2",
         price: 4500
-      }
-    ],
-    types: [
-      {
+      },
+    },
+    types: {
+      'long_range_plus': {
         label: "Long Range Plus",
         value: "long_range_plus",
         specs: {
@@ -36,7 +46,7 @@ export const models = [
         },
         price: 69420
       },
-      {
+      'perfomance': {
         label: "Performance",
         value: "performance",
         specs: {
@@ -52,7 +62,7 @@ export const models = [
           "Carbon fiber spoiler"
         ]
       },
-      {
+      'plaid': {
         label: "Plaid",
         value: "plaid",
         specs: {
@@ -68,29 +78,29 @@ export const models = [
           "1,100+ horsepower",
           "Tri Motor All-Wheel Drive"
         ]
-      },
-    ]
+      }
+    }
   },
-  {
+  'x': {
     key: 'x',
     name: "Model X",
     colors: colors,
-    wheels: [
-      {
+    wheels: {
+      'wheel_1': {
         src: `${process.env.PUBLIC_URL}/wheels/model_x/model_x_wheel_1.png`,
         label: '20" Silver Wheels',
         value: "wheel_1",
         price: 0
       },
-      {
+      'wheel_2': {
         src: `${process.env.PUBLIC_URL}/wheels/model_x/model_x_wheel_2.png`,
         label: '22" Onyx Black Wheels',
         value: "wheel_2",
         price: 5500
       }
-    ],
-    types: [
-      {
+    },
+    types: {
+      'long_range_plus': {
         label: "Long Range Plus",
         value: "long_range_plus",
         specs: {
@@ -100,7 +110,7 @@ export const models = [
         },
         price: 79900
       },
-      {
+      'performance': {
         label: "Performance",
         value: "performance",
         specs: {
@@ -114,29 +124,29 @@ export const models = [
           "Ludicrous Mode",
           "Enhanced Interior Styling"
         ]
-      }
-    ]
+      },
+    }
   },
-  {
+  'y': {
     key: 'y',
     name: "Model Y",
     colors: colors,
-    wheels: [
-      {
+    wheels: {
+      'wheel_1': {
         src: `${process.env.PUBLIC_URL}/wheels/model_y/model_y_wheel_1.png`,
         label: '19’’ Gemini Wheels',
         value: "wheel_1",
         price: 0
       },
-      {
+      'wheel_2': {
         src: `${process.env.PUBLIC_URL}/wheels/model_y/model_y_wheel_2.png`,
         label: '20’’ Induction Wheels',
         value: "wheel_2",
         price: 2000
       }
-    ],
-    types: [
-      {
+    },
+    types: {
+      'long_range': {
         label: "Long Range",
         value: "long_range",
         specs: {
@@ -146,7 +156,7 @@ export const models = [
         },
         price: 45690
       },
-      {
+      'performance': {
         label: "Performance",
         value: "performance",
         specs: {
@@ -163,9 +173,9 @@ export const models = [
           "Aluminum alloy pedals"
         ]
       }
-    ]
+    }
   }
-];
+};
 
 export const initialConfig = {
   's': {

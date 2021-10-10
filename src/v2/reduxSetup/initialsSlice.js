@@ -1,18 +1,30 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createSelector } from "@reduxjs/toolkit";
 
-import { models, colors, initialConfig } from "../data";
+import { models, colors } from "../data";
 
-import { normalizeData } from '../utils/reduxUtils';
+import { getInitials } from './rootSlice';
 
 const initialState = {
-    models: normalizeData(models),
-    colors: normalizeData(colors, 'value'),
-    initialConfig
+    models,
+    colors
 };
 
 const initialsSlice = createSlice({
     name: 'initials',
     initialState
 });
+
+export const getModels = state => getInitials(state).models;
+export const getModelsIndexes = state => Object.keys(getModels(state)).map(el => el.indexOf());
+
+export const getCarModel = (state, model) => model;
+export const getCarModelById = createSelector(
+    [getModels, getCarModel],
+    (models, model) => {
+        return models[model];
+    }
+);
+
+export const getCarPrice = createSelector()
 
 export default initialsSlice.reducer;
