@@ -69,8 +69,7 @@ export const models = [
           "Tri Motor All-Wheel Drive"
         ]
       },
-    ],
-    interiorColors: interiorColors
+    ]
   },
   {
     key: 'x',

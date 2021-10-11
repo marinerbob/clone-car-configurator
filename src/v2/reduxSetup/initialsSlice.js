@@ -15,7 +15,6 @@ const initialsSlice = createSlice({
 });
 
 export const getModels = state => getInitials(state).models;
-export const getModelsIndexes = state => Object.keys(getModels(state)).map(el => el.indexOf());
 
 export const getCarModel = (state, model) => model;
 export const getCarModelById = createSelector(
@@ -24,7 +23,5 @@ export const getCarModelById = createSelector(
         return models[model];
     }
 );
-
-export const getCarPrice = createSelector()
 
 export default initialsSlice.reducer;

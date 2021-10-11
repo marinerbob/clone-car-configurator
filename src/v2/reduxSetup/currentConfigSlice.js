@@ -2,13 +2,11 @@ import { createSlice, createSelector } from '@reduxjs/toolkit';
 
 import { initialConfig } from '../data';
 
-import { getCurrentConfig } from './rootSlice';
-
 import { getModels } from './initialsSlice';
+import { getCurrentConfig } from './rootSlice';
 
 const initialState = {
     currentModel: "s",
-    currentStep: 0,
     carConfig: initialConfig
 };
 
@@ -16,11 +14,13 @@ const currentConfigSlice = createSlice({
     name: 'currentConfig',
     initialState,
     reducers: {
+        updateModelByIndex(state, action) {
+            let model = Object.keys(state.carConfig)[action.payload.index];
+
+            state.currentModel = model;
+        },
         updateModel(state, action) {
             state.currentModel = action.payload.model;
-        },
-        updateStep(state, action) {
-            state.currentStep = action.payload.step;
         },
         updateConfig(state, action) {
             const model = state.currentModel;
@@ -31,45 +31,49 @@ const currentConfigSlice = createSlice({
 });
 
 export const getCurrentModel = state => getCurrentConfig(state).currentModel;
-export const getCurrentStep = state => getCurrentConfig(state).currentStep;
 export const getConfig = state => getCurrentConfig(state).carConfig;
 
-export const getConfigType = state => getConfig(state).car_type;
-export const getConfigColor = state => getConfig(state).color;
-export const getConfigWheels = state => getConfig(state).wheels;
-
-export const getCurrentCarModel = createSelector(
-    [getModels, getCurrentModel], (models, model) => {
-        return models[model];
+export const getCarConfig = createSelector(
+    [getCurrentModel, getConfig],
+    (model, config) => {
+        return config[model];
     }
 );
 
-export const getCurrentCarType = createSelector(
-    [getCurrentCarModel, getConfigType],
-    (model, type) => {
-        return model[type];
-    }
-);
-export const getCurrentCarColor = createSelector(
-    [getCurrentCarModel, getConfigColor],
-    (model, color) => {
-        return model[color];
-    }
-);
-export const getCurrentCarWheels = createSelector(
-    [getCurrentModel, getConfigWheels],
-    (model, wheels) => {
-        return model[wheels];
+export const getCarImages = createSelector(
+    [getConfig],
+    (config) => {
+        let imagesData = [];
+
+        Object.keys(config).forEach((car, ind) => {
+            imagesData.push({
+                url: `${process.env.PUBLIC_URL}/cars/model_${car}/model_${car}_${config[car].color}_${config[car].wheels}.png`,
+                alt: car,
+                index: ind
+            });
+        });
+
+        return imagesData;
     }
 );
 
-export const getCurrentCarPrice = createSelector(
-    [getCurrentCarType, getCurrentCarColor, getCurrentCarWheels],
-    (type, color, wheels) => {
-        return type.price + color.price + wheels.price;
+export const getActiveIndex = createSelector(
+    [getCurrentModel, getConfig],
+    (model, config) => {
+        return Object.keys(config).indexOf(model);
     }
 );
 
-export const { updateModel, updateStep, updateConfig } = currentConfigSlice.actions;
+export const getCurrentCarImage = createSelector(
+    [getCarConfig],
+    (config) => {
+        return {
+            url: `${process.env.PUBLIC_URL}/cars/model_${config.model}/model_${config.model}_${config.color}_${config.wheels}.png`,
+            alt: config.model
+        };
+    }
+);
+
+export const { updateModelByIndex, updateModel, updateConfig } = currentConfigSlice.actions;
 
 export default currentConfigSlice.reducer;

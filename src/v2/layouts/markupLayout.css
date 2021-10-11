@@ -1,0 +1,11 @@
+.main-container {
+    max-height: calc(100% - 130px);
+}
+
+.nav-item a {
+    text-decoration: none;
+}
+
+.nav-item.active a {
+    color: #000
+}
