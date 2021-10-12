@@ -19,7 +19,7 @@ export const colors = {
 export const models = {
   's': {
     key: 's',
-    name: "Model S",
+    label: "Model S",
     colors: colors,
     wheels: {
       'wheel_1': {
@@ -83,7 +83,7 @@ export const models = {
   },
   'x': {
     key: 'x',
-    name: "Model X",
+    label: "Model X",
     colors: colors,
     wheels: {
       'wheel_1': {
@@ -129,7 +129,7 @@ export const models = {
   },
   'y': {
     key: 'y',
-    name: "Model Y",
+    label: "Model Y",
     colors: colors,
     wheels: {
       'wheel_1': {

@@ -2,6 +2,7 @@ import { createSlice, createSelector } from "@reduxjs/toolkit";
 
 import { getSteps } from "./rootSlice";
 import { getCurrentCarConfig, getCurrentCarModel } from './currentConfigSlice';
+import { getCarsOptions } from './modelsSlice';
 
 const initialState = {
   currentStep: 'car',
@@ -10,17 +11,20 @@ const initialState = {
       name: 'car',
       prevStep: null,
       nextStep: 'exterior',
+      slides: 'overview',
       settings: [
         {
           label: 'Select car',
           type: 'text',
           prop: 'model',
-          modelBinding: 'key'
+          binding: null,
+          modelBinding: 'key',
         },
         {
           label: 'Select type',
           type: 'text',
           prop: 'car_type',
+          binding: 'types',
           upperDescription: 'All cars have Dual Motor All-Wheel Drive, adaptive air suspension, premium interior and sound.',
           lowerDescription: `Tesla All-Wheel Drive has two independent motors that digitally control torque to the front and rear wheels—for far better handling and traction control. Your car can drive on either motor, so you don't need to worry about getting stuck on the road.`
         }
@@ -61,16 +65,24 @@ const stepsSlice = createSlice({
   },
 });
 
+export const getCurrentStep = state => getSteps(state).currentStep;
 export const getAllStepsData = state => getSteps(state).stepsData;
 export const getAllStepsIds = state => Object.keys(getAllStepsData(state));
-export const getCurrentStep = state => getSteps(state).currentStep;
+export const getCurrentStepData = createSelector(
+  [getAllStepsData, getCurrentStep],
+  (stepsData, currentStep) => stepsData[currentStep]
+);
+
 export const getStepUrls = state => getAllStepsIds(state).map(step => `/${step}`);
 
-export const getStepsPageData = createSelector(
-  [getAllStepsData, getCurrentCarConfig, getCurrentCarModel],
-  (stepsData, carConfig, carModel) => {
-    
-  }
+export const getSettingsOptions = createSelector(
+  [getCurrentStepData, getCurrentCarModel],
+  (stepData, carModel) => {
+    const settings = stepData.settings;
+    let performedSettings = settings.map(s => {
+      let settingsOptions = s.binding ? 
+    });
+  } 
 );
 
 export const { updateStep } = stepsSlice.actions;
