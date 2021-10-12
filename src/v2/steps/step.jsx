@@ -17,6 +17,7 @@ const CarStep = props => {
     </Col>
     <Col className="pt-md-3" md="4">
       <h1>Config</h1>
+      {data}
     </Col>
   </Row>
   );

@@ -1,10 +1,11 @@
-import React from "react";
+import React from 'react';
 
-import Carousel from "react-bootstrap/Carousel";
+import Carousel from 'react-bootstrap/Carousel';
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
 
-import { updateModelByIndex, getCarImages, getActiveIndex } from '../../reduxSetup/currentConfigSlice';
+import { updateModelByIndex } from '../../reduxSetup/currentConfigSlice';
+import { getCarImages, getActiveIndex } from '../../reduxSetup/currentConfigSlice/selectors';
 
 const CarouselContainer = ({ activeIndex, images, onSelect }) => (
     <Carousel onSelect={onSelect} activeIndex={activeIndex} variant="dark" indicators={false} interval={null}>

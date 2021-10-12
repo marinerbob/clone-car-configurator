@@ -1,8 +1,4 @@
-import { createSlice, createSelector } from "@reduxjs/toolkit";
-
-import { getSteps } from "./rootSlice";
-import { getCurrentCarConfig, getCurrentCarModel } from './currentConfigSlice';
-import { getCarsOptions } from './modelsSlice';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   currentStep: 'car',
@@ -64,26 +60,6 @@ const stepsSlice = createSlice({
     },
   },
 });
-
-export const getCurrentStep = state => getSteps(state).currentStep;
-export const getAllStepsData = state => getSteps(state).stepsData;
-export const getAllStepsIds = state => Object.keys(getAllStepsData(state));
-export const getCurrentStepData = createSelector(
-  [getAllStepsData, getCurrentStep],
-  (stepsData, currentStep) => stepsData[currentStep]
-);
-
-export const getStepUrls = state => getAllStepsIds(state).map(step => `/${step}`);
-
-export const getSettingsOptions = createSelector(
-  [getCurrentStepData, getCurrentCarModel],
-  (stepData, carModel) => {
-    const settings = stepData.settings;
-    let performedSettings = settings.map(s => {
-      let settingsOptions = s.binding ? 
-    });
-  } 
-);
 
 export const { updateStep } = stepsSlice.actions;
 

@@ -4,7 +4,7 @@ import { Row, Col, Image } from "react-bootstrap";
 
 import { useSelector } from "react-redux";
 
-import { getCurrentCarImage } from '../reduxSetup/currentConfigSlice';
+import { getCurrentCarImage } from '../reduxSetup/currentConfigSlice/selectors';
 
 import Images from '../components/settings/images';
 

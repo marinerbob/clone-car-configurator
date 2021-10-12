@@ -7,25 +7,14 @@ import ReduxLayout from "./layouts/reduxLayout";
 import MarkupLayout from "./layouts/markupLayout";
 import RouterLayout from "./layouts/routerLayout";
 
-import { Switch, Route, Redirect } from 'react-router-dom'; 
-
-import Car from './steps/car.jsx'
-import Exterior from './steps/exterior.jsx';
-import Summary from './steps/summary.jsx';
+import StepsContainer from './steps/stepsContainer.jsx';
 
 export default function App() {
   return (
     <ReduxLayout>
       <RouterLayout>
         <MarkupLayout>
-            <Switch>
-                <Route path="/car" component={Car} />
-                <Route path="/exterior" component={Exterior}/>
-                <Route path="/summary" component={Summary} />
-                <Route path="/">
-                    <Redirect to="/car" />
-                </Route>
-            </Switch>
+            <StepsContainer />
         </MarkupLayout>
       </RouterLayout>
     </ReduxLayout>
