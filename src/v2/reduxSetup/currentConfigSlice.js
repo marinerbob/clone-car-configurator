@@ -2,8 +2,7 @@ import { createSlice, createSelector } from '@reduxjs/toolkit';
 
 import { initialConfig } from '../data';
 
-import { getModels } from './initialsSlice';
-import { getCurrentConfig } from './rootSlice';
+import { getCurrentConfig, getModels } from './rootSlice';
 
 const initialState = {
     currentModel: "s",
@@ -33,10 +32,17 @@ const currentConfigSlice = createSlice({
 export const getCurrentModel = state => getCurrentConfig(state).currentModel;
 export const getConfig = state => getCurrentConfig(state).carConfig;
 
-export const getCarConfig = createSelector(
+export const getCurrentCarConfig = createSelector(
     [getCurrentModel, getConfig],
     (model, config) => {
         return config[model];
+    }
+);
+
+export const getCurrentCarModel = createSelector(
+    [getCurrentModel, getModels],
+    (model, models) => {
+        return models[model];
     }
 );
 
@@ -65,7 +71,7 @@ export const getActiveIndex = createSelector(
 );
 
 export const getCurrentCarImage = createSelector(
-    [getCarConfig],
+    [getCurrentCarConfig],
     (config) => {
         return {
             url: `${process.env.PUBLIC_URL}/cars/model_${config.model}/model_${config.model}_${config.color}_${config.wheels}.png`,
