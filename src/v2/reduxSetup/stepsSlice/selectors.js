@@ -12,11 +12,23 @@ export const getCurrentStepData = createSelector(
     (stepsData, currentStep) => stepsData[currentStep]
 );
 
-export const getStepUrls = state => Object.values(getAllStepsData(state)).map(step => ({
+export const getCurrentStepUrl = createSelector(
+  [getCurrentStepData],
+  step => ({
     name: step.name,
     url: `/${step.name}`,
     isFirst: step.prevStep === null
-}));
+  })
+)
+
+export const getStepUrls = createSelector(
+  [getAllStepsData],
+  stepsData => Object.values(stepsData).map(step => ({
+    name: step.name,
+    url: `/${step.name}`,
+    isFirst: step.prevStep === null
+  }))
+);
 
 export const getStepDataByModel = createSelector(
   [getCurrentStepData, getCurrentCarModel, getCarsOptions],

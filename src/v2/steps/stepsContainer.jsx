@@ -1,15 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { Switch, Route, Redirect } from 'react-router';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Car from './car';
-import { getStepUrls } from '../reduxSetup/stepsSlice/selectors';
+import { getStepUrls, getCurrentStepUrl } from '../reduxSetup/stepsSlice/selectors';
+
+import { push } from 'connected-react-router';
 
 const StepsContainer = () => {
+    const dispatch = useDispatch();
     const stepUrlsConfig = useSelector(getStepUrls);
+    const currentStep = useSelector(getCurrentStepUrl);
     const firstUrl = stepUrlsConfig.find(step => step.isFirst).url;
+
+    useEffect(() => {
+        dispatch(push(currentStep));
+    }, [currentStep, dispatch]);
+
 
     return (
         <Switch>

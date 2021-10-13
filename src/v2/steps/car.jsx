@@ -1,14 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { Row, Col } from "react-bootstrap";
 import Carousel from "../components/carousel";
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { updateStep } from '../reduxSetup/stepsSlice';
 import { getStepDataByModel } from '../reduxSetup/stepsSlice/selectors';
 
 const CarStep = props => {
+  const dispatch = useDispatch();
   const data = useSelector(getStepDataByModel);
   console.log(data, props);
+
+  useEffect(() => {
+    dispatch(updateStep(data.name))
+  }, [])
 
   return (
     <Row>
