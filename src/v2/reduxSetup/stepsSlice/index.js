@@ -5,6 +5,7 @@ const initialState = {
   stepsData: {
     car: {
       name: 'car',
+      label: 'Car configuration',
       prevStep: null,
       nextStep: 'exterior',
       slides: 'model',
@@ -28,6 +29,7 @@ const initialState = {
     },
     exterior: {
       name: 'exterior',
+      label: 'Exterior configuration',
       prevStep: 'car',
       nextStep: 'summary',
       settings: [
@@ -47,6 +49,7 @@ const initialState = {
     },
     summary: {
       name: 'summary',
+      label: 'Summary',
       prevStep: 'exterior',
       nextStep: null
     },
