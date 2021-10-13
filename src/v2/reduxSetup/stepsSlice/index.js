@@ -13,15 +13,16 @@ const initialState = {
         {
           label: 'Select car',
           type: 'text',
-          prop: 'currentModel',
+          prop: null,
           binding: null,
-          modelBinding: 'currentModel',
+          modelBinding: null,
         },
         {
           label: 'Select type',
           type: 'text',
           prop: 'car_type',
           binding: 'types',
+          showPrice: true,
           upperDescription: 'All cars have Dual Motor All-Wheel Drive, adaptive air suspension, premium interior and sound.',
           lowerDescription: `Tesla All-Wheel Drive has two independent motors that digitally control torque to the front and rear wheels—for far better handling and traction control. Your car can drive on either motor, so you don't need to worry about getting stuck on the road.`
         }

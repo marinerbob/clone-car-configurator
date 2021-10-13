@@ -20,9 +20,15 @@ const currentConfigSlice = createSlice({
             state.currentModel = action.payload.model;
         },
         updateConfig(state, action) {
-            const model = state.currentModel;
+            const { value, prop } = action.payload;
+            if (prop) {
+                const model = state.currentModel;
 
-            state.config[model][action.payload.key] = action.payload.val;
+                state.carConfig[model][prop] = value;
+            } else {
+                state.currentModel = value;
+            }
+            
         }
     }
 });

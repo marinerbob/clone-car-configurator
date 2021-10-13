@@ -11,6 +11,14 @@ export const getCurrentCarConfig = createSelector(
     }
 );
 
+export const getCurrentProp = prop => state => {
+    if (prop) {
+        return getCurrentCarConfig(state)[prop];
+    }
+
+    return getCurrentModel(state);
+}
+
 export const getCurrentCarModel = createSelector(
     [getCurrentModel, getModels],
     (model, models) => {
