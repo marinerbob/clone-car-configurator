@@ -7,14 +7,14 @@ const initialState = {
       name: 'car',
       prevStep: null,
       nextStep: 'exterior',
-      slides: 'overview',
+      slides: 'model',
       settings: [
         {
           label: 'Select car',
           type: 'text',
-          prop: 'model',
+          prop: 'currentModel',
           binding: null,
-          modelBinding: 'key',
+          modelBinding: 'currentModel',
         },
         {
           label: 'Select type',
@@ -34,12 +34,14 @@ const initialState = {
         {
           label: 'Select color',
           type: 'color',
-          prop: 'color'
+          prop: 'color',
+          binding: 'colors'
         },
         {
           label: 'Select wheels',
           type: 'image',
           prop: 'wheels',
+          binding: 'wheels'
         }
       ]
     },

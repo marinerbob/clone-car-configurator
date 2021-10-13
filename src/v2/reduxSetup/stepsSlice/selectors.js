@@ -33,7 +33,7 @@ export const getStepUrls = createSelector(
 export const getStepDataByModel = createSelector(
   [getCurrentStepData, getCurrentCarModel, getCarsOptions],
   (stepData, carModel, carOptions) => {
-    const settings = stepData.settings;
+    const settings = stepData.settings || [];
     let performedSettings = settings.map(s => {
       let settingsOptions = {
         ...s,

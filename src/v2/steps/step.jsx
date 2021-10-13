@@ -1,26 +1,30 @@
-import React from "react";
+import React from 'react';
 
-import { Row, Col } from "react-bootstrap";
-import Carousel from "../components/carousel";
+import { Row, Col } from 'react-bootstrap';
 
 import { useSelector } from 'react-redux';
 import { getStepDataByModel } from '../reduxSetup/stepsSlice/selectors';
 
-const CarStep = props => {
-  const data = useSelector(getStepDataByModel);
-  console.log(data, props);
+import withStepsUpdate from './withStepsUpdate';
+
+import Preview from '../components/preview';
+import Settings from '../components/settings';
+
+
+const Step = () => {
+  const { name, prevStep, nextStep, slides, settings } = useSelector(getStepDataByModel);
+  console.log({ name, prevStep, nextStep, slides, settings });
 
   return (
     <Row>
     <Col md="8">
-      <Carousel />
+      <Preview slides={slides} />
     </Col>
     <Col className="pt-md-3" md="4">
-      <h1>Config</h1>
-      {data}
+      <Settings settings={settings} />
     </Col>
   </Row>
   );
 };
 
-export default CarStep;
+export default withStepsUpdate(Step);
