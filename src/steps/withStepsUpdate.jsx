@@ -11,7 +11,7 @@ const withStepsUpdate = Component => props => {
         dispatch(updateStep({
             step: props.name
         }));
-    }, [dispatch]);
+    }, [dispatch, props.name]);
   
     return <Component {...props} />
   };

@@ -64,7 +64,7 @@ const SettingsContainer = ({ label, settings }) => {
             <p className="p-2 fw-light">{s.upperDescription}</p>
           )}
           <List showPrice={s.showPrice} prop={s.prop} options={s.options} />
-          {typesInfo && typesInfo.benefits && (
+          {s.prop === 'car_type' && typesInfo && typesInfo.benefits && (
             <div className="p-3">
               <h3 className="p-2">Benefits:</h3>
                 {typesInfo.benefits.map((b, ind) => (
