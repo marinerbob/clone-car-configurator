@@ -46,7 +46,7 @@ export const models = {
         },
         price: 69420
       },
-      'perfomance': {
+      'performance': {
         label: "Performance",
         value: "performance",
         specs: {
@@ -179,21 +179,26 @@ export const models = {
 
 export const initialConfig = {
   's': {
-    car_type: "long_range_plus",
     model: "s",
+    car_type: "long_range_plus",
     color: "white",
     wheels: "wheel_1"
   },
   'x': {
-    car_type: "long_range_plus",
     model: "x",
+    car_type: "long_range_plus",
     color: "white",
     wheels: "wheel_1"
   },
   'y': {
-    car_type: "long_range",
     model: "y",
+    car_type: "long_range",
     color: "white",
     wheels: "wheel_1"
   }
+};
+
+export const configModelMap = {
+  car_type: 'types',
+  color: 'colors',
 };

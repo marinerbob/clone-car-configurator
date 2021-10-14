@@ -3,14 +3,20 @@ import React from "react";
 import { useSelector } from 'react-redux';
 
 import { getCurrentStepUrl } from '../../reduxSetup/stepsSlice/selectors';
+import { getCurrentPrice } from '../../reduxSetup/currentConfigSlice/selectors';
 
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
+import { formatPrice } from '../../utils/generalUtils.js';
+
+import './footer.css';
+
 const FooterContainer = () => {
   const { prevStepUrl, nextStepUrl } = useSelector(getCurrentStepUrl);
+  const price = useSelector(getCurrentPrice);
 
-  return (<Footer prevStepUrl={prevStepUrl} nextStepUrl={nextStepUrl} />);
+  return (<Footer price={price} prevStepUrl={prevStepUrl} nextStepUrl={nextStepUrl} />);
 };
 
 const Footer = ({ prevStepUrl, nextStepUrl, price }) => (
@@ -20,11 +26,11 @@ const Footer = ({ prevStepUrl, nextStepUrl, price }) => (
         <Button disabled={prevStepUrl === null} className="footer__nav-btn">
           <Link to={prevStepUrl || '/'} className="footer__nav-item">
             Prev
-        </Link>
+          </Link>
         </Button>
       </Col>
       <Col>
-        <div className="price footer__price">{price || ''}</div>
+        <div className="price footer__price">{price ? formatPrice(price) : ''}</div>
       </Col>
       <Col className="d-flex col-right">
         <Button disabled={nextStepUrl === null} className="footer__nav-btn">

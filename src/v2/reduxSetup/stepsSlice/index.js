@@ -38,12 +38,14 @@ const initialState = {
           label: 'Select color',
           type: 'color',
           prop: 'color',
+          showPrice: true,
           binding: 'colors'
         },
         {
           label: 'Select wheels',
           type: 'image',
           prop: 'wheels',
+          showPrice: true,
           binding: 'wheels'
         }
       ]

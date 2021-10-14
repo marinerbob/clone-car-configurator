@@ -6,15 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getCurrentProp } from '../../reduxSetup/currentConfigSlice/selectors';
 import { updateConfig } from '../../reduxSetup/currentConfigSlice';
 
-const formatNumber = (value) => {
-    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-};
-  
-const formatPrice = (value, zero = "included") => {
-    if (isNaN(value)) return null;
-    return value === 0 ? zero : `$${formatNumber(value)}`;
-};
-  
+import { formatPrice } from '../../utils/generalUtils.js';
 
 const OptionContainer = props => {
     const dispatch = useDispatch();

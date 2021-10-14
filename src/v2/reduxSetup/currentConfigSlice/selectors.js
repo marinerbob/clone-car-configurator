@@ -3,6 +3,7 @@ import { getCurrentConfig, getModels } from '../rootSlice/selectors';
 
 export const getCurrentModel = state => getCurrentConfig(state).currentModel;
 export const getConfig = state => getCurrentConfig(state).carConfig;
+export const getConfigModelMap = state => getCurrentConfig(state).configModelMap;
 
 export const getCurrentCarConfig = createSelector(
     [getCurrentModel, getConfig],
@@ -57,5 +58,28 @@ export const getCurrentCarImage = createSelector(
             url: `${process.env.PUBLIC_URL}/cars/model_${config.model}/model_${config.model}_${config.color}_${config.wheels}.png`,
             alt: config.model
         };
+    }
+);
+
+export const getCurrentPrice = createSelector(
+    [getCurrentCarConfig, getCurrentCarModel, getConfigModelMap],
+    (config, model, configModelMap) => {
+        let configKeys = Object.keys(config);
+        let performedObj = configKeys.reduce((obj, key) => {
+            let performedKey = configModelMap[key] || key;
+    
+            obj[performedKey] = config[key];
+
+            return obj;
+        }, {});
+
+        let initialPrice = 0;
+        let price = Object.keys(performedObj).reduce((price, key) => {
+            let priceValue = (model[key] && model[key][performedObj[key]] &&
+                model[key][performedObj[key]].price) || 0;
+            return price + priceValue;
+        }, initialPrice);
+
+        return price;
     }
 );

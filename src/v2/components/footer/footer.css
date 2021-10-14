@@ -15,8 +15,12 @@
     text-align: center;
 }
 
-.footer__nav-item {
-    width: 50%;
+.footer__nav-item,
+.footer__nav-item:hover {
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+    display: block;
 }
 
 .footer__nav-btn {

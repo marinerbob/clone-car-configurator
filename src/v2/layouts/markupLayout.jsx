@@ -9,7 +9,7 @@ import "./markupLayout.css";
 const markupLayout = ({ children }) => (
   <>
     <Menu />
-    <Container fluid>
+    <Container className="main-container" fluid>
       {children}
     </Container>
     <Footer />
