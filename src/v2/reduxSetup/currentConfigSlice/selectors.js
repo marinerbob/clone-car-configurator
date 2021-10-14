@@ -18,7 +18,7 @@ export const getCurrentProp = prop => state => {
     }
 
     return getCurrentModel(state);
-}
+};
 
 export const getCurrentCarModel = createSelector(
     [getCurrentModel, getModels],
@@ -26,6 +26,16 @@ export const getCurrentCarModel = createSelector(
         return models[model];
     }
 );
+
+export const getCurrentPropValue = (prop) => state => {
+    const currentProp = getCurrentProp(prop)(state);
+    const configModelMap = getConfigModelMap(state);
+    const currentModel = getCurrentCarModel(state);
+    const performedPropName = configModelMap[prop] || currentProp;
+    
+
+    return currentModel[performedPropName][currentProp];
+};
 
 export const getCarImages = createSelector(
     [getConfig],
