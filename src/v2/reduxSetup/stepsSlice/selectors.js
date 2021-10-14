@@ -16,6 +16,8 @@ export const getCurrentStepUrl = createSelector(
   [getCurrentStepData],
   step => ({
     name: step.name,
+    prevStepUrl: `/${step.prevStep}`,
+    nextStepUrl: `/${step.nextStep}`,
     url: `/${step.name}`,
     isFirst: step.prevStep === null
   })

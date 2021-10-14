@@ -1,5 +1,5 @@
 .main-container {
-    overflow-y: auto;
+    padding-bottom: 75px;
 }
 
 .nav-item a {
