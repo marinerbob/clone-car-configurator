@@ -1,11 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { initialConfig, configModelMap } from '../../data';
+import { initialConfig, configModelMap, summaryFields } from '../../data';
 
 const initialState = {
     currentModel: "s",
     carConfig: initialConfig,
-    configModelMap
+    configModelMap,
+    summaryFields
 };
 
 const currentConfigSlice = createSlice({

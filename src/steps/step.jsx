@@ -9,11 +9,12 @@ import withStepsUpdate from "./withStepsUpdate";
 
 import Preview from "../components/preview";
 import Configuration from "../components/configuration";
+import Summary from "../components/configuration/summary";
 
 const Step = () => {
-  const { name, label, prevStep, nextStep, slides, settings } =
+  const { label, prevStep, nextStep, slides, settings } =
     useSelector(getStepDataByModel);
-  console.log({ name, label, prevStep, nextStep, slides, settings });
+  const isLastStep = nextStep === null;
 
   return (
     <Row>
@@ -21,12 +22,18 @@ const Step = () => {
         <Preview slides={slides} />
       </Col>
       <Col className="pt-md-3" md="4">
-        <Configuration
-          prevStep={prevStep}
-          nextStep={nextStep}
-          label={label}
-          settings={settings}
-        />
+        {isLastStep ? (
+          <Summary 
+            label={label}
+          />
+        ) : (
+          <Configuration
+            prevStep={prevStep}
+            nextStep={nextStep}
+            label={label}
+            settings={settings}
+          />
+        )}
       </Col>
     </Row>
   );

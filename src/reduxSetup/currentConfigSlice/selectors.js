@@ -4,6 +4,7 @@ import { getCurrentConfig, getModels } from '../rootSlice/selectors';
 export const getCurrentModel = state => getCurrentConfig(state).currentModel;
 export const getConfig = state => getCurrentConfig(state).carConfig;
 export const getConfigModelMap = state => getCurrentConfig(state).configModelMap;
+export const getSummaryFields = state => getCurrentConfig(state).summaryFields;
 
 export const getCurrentCarConfig = createSelector(
     [getCurrentModel, getConfig],
@@ -27,12 +28,15 @@ export const getCurrentCarModel = createSelector(
     }
 );
 
-export const getCurrentPropValue = (prop) => state => {
+export const getCurrentPropValue = prop => state => {
+    if (!prop) {
+        return null;
+    }
+
     const currentProp = getCurrentProp(prop)(state);
     const configModelMap = getConfigModelMap(state);
     const currentModel = getCurrentCarModel(state);
-    const performedPropName = configModelMap[prop] || currentProp;
-    
+    const performedPropName = configModelMap[prop] || prop;
 
     return currentModel[performedPropName][currentProp];
 };
@@ -71,25 +75,24 @@ export const getCurrentCarImage = createSelector(
     }
 );
 
+export const getSummaryInfo = state => {
+    const summaryFields = getSummaryFields(state);
+
+    return summaryFields.map(field => {
+        let fieldInfo = getCurrentPropValue(field)(state);
+
+        return ({
+            label: fieldInfo.label,
+            price: fieldInfo.price
+        });
+    });
+};
+
 export const getCurrentPrice = createSelector(
-    [getCurrentCarConfig, getCurrentCarModel, getConfigModelMap],
-    (config, model, configModelMap) => {
-        let configKeys = Object.keys(config);
-        let performedObj = configKeys.reduce((obj, key) => {
-            let performedKey = configModelMap[key] || key;
-    
-            obj[performedKey] = config[key];
-
-            return obj;
-        }, {});
-
-        let initialPrice = 0;
-        let price = Object.keys(performedObj).reduce((price, key) => {
-            let priceValue = (model[key] && model[key][performedObj[key]] &&
-                model[key][performedObj[key]].price) || 0;
-            return price + priceValue;
-        }, initialPrice);
-
-        return price;
+    [getSummaryInfo],
+    (summaryFields) => {
+        return summaryFields.reduce((price, val) => {
+            return price += val.price;
+        }, 0); 
     }
 );

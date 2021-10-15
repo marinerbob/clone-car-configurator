@@ -20,7 +20,7 @@ const FooterContainer = () => {
 };
 
 const Footer = ({ prevStepUrl, nextStepUrl, price }) => (
-  <Container fluid className="footer main-container__footer">
+  <Container fluid className="footer main-container__footer d-none d-sm-block">
     <Row>
       <Col className="d-flex">
         <Button disabled={prevStepUrl === null} className="footer__nav-btn">

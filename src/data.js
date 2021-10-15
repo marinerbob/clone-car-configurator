@@ -202,3 +202,5 @@ export const configModelMap = {
   car_type: 'types',
   color: 'colors',
 };
+
+export const summaryFields = ['car_type', 'color', 'wheels'];
