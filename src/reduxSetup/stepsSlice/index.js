@@ -7,7 +7,7 @@ const initialState = {
       name: 'car',
       label: 'Car configuration',
       prevStep: null,
-      nextStep: 'exterior',
+      nextStep: 'add_char',
       slides: 'model',
       settings: [
         {
@@ -28,10 +28,26 @@ const initialState = {
         }
       ]
     },
+    add_char: {
+      name: 'add_char',
+      label: 'Additional Configuration',
+      prevStep: 'car',
+      nextStep: 'exterior',
+      settings: [
+        {
+          label: 'Select additional char',
+          type: 'text',
+          prop: 'char',
+          binding: 'chars',
+          showPrice: true,
+          modelBinding: null,
+        },
+      ]
+    },
     exterior: {
       name: 'exterior',
       label: 'Exterior configuration',
-      prevStep: 'car',
+      prevStep: 'add_char',
       nextStep: 'summary',
       settings: [
         {

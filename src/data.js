@@ -16,11 +16,25 @@ export const colors = {
   }
 };
 
+export const additionalChars = {
+  'additional_char_1' : {
+    label: 'Its char #1',
+    price: 40000,
+    value: 'additional_char_1'
+  },
+  'additional_char_2': {
+    label: 'Its char #2',
+    price: 600000,
+    value: 'additional_char_2'
+  }
+};
+
 export const models = {
   's': {
     key: 's',
     label: "Model S",
     colors: colors,
+    chars: additionalChars,
     wheels: {
       'wheel_1': {
         src: `${process.env.PUBLIC_URL}/wheels/model_s/model_s_wheel_1.png`,
@@ -85,6 +99,7 @@ export const models = {
     key: 'x',
     label: "Model X",
     colors: colors,
+    chars: additionalChars,
     wheels: {
       'wheel_1': {
         src: `${process.env.PUBLIC_URL}/wheels/model_x/model_x_wheel_1.png`,
@@ -131,6 +146,7 @@ export const models = {
     key: 'y',
     label: "Model Y",
     colors: colors,
+    chars: additionalChars,
     wheels: {
       'wheel_1': {
         src: `${process.env.PUBLIC_URL}/wheels/model_y/model_y_wheel_1.png`,
@@ -182,25 +198,29 @@ export const initialConfig = {
     model: "s",
     car_type: "long_range_plus",
     color: "white",
-    wheels: "wheel_1"
+    wheels: "wheel_1",
+    char: 'additional_char_1'
   },
   'x': {
     model: "x",
     car_type: "long_range_plus",
     color: "white",
-    wheels: "wheel_1"
+    wheels: "wheel_1",
+    char: 'additional_char_1'
   },
   'y': {
     model: "y",
     car_type: "long_range",
     color: "white",
-    wheels: "wheel_1"
+    wheels: "wheel_1",
+    char: 'additional_char_1'
   }
 };
 
 export const configModelMap = {
   car_type: 'types',
   color: 'colors',
+  char: 'chars'
 };
 
-export const summaryFields = ['car_type', 'color', 'wheels'];
+export const summaryFields = ['car_type', 'color', 'wheels', 'char'];
