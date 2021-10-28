@@ -41,6 +41,21 @@ export const getCurrentPropValue = prop => state => {
     return currentModel[performedPropName][currentProp];
 };
 
+export const getModelImages = currentModel => state => {
+    if (currentModel === 'cars') {
+        return getCarImages(state);
+    }
+
+    const config = getConfig(state);
+    let imagesData = [];
+
+    Object.keys(config).forEach((car, ind) => {
+
+    });
+
+    return imagesData;
+};
+
 export const getCarImages = createSelector(
     [getConfig],
     (config) => {

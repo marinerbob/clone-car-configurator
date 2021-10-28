@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import Carousel from 'react-bootstrap/Carousel';
 
 import { useDispatch, useSelector } from 'react-redux';
 
 import { updateModelByIndex } from '../../reduxSetup/currentConfigSlice';
-import { getCarImages, getActiveIndex } from '../../reduxSetup/currentConfigSlice/selectors';
+import { getModelImages, getActiveIndex } from '../../reduxSetup/currentConfigSlice/selectors';
 
 const CarouselContainer = ({ activeIndex, images, onSelect }) => (
     <Carousel onSelect={onSelect} activeIndex={activeIndex} variant="dark" indicators={false} interval={null}>
@@ -22,16 +22,19 @@ const CarouselContainer = ({ activeIndex, images, onSelect }) => (
 );
 
 
-const ConnectedCarousel = () => {
+const ConnectedCarousel = ({ modelBinding }) => {
     const dispatch = useDispatch();
 
-    const images = useSelector(getCarImages);
+    const images = useSelector(getModelImages(modelBinding || 'cars'));
     const activeIndex = useSelector(getActiveIndex);
-    const onSelect = (selectedIndex) => {
-        dispatch(updateModelByIndex({
-            index: selectedIndex
-        }));
-    };
+    const onSelect = useCallback(
+        (selectedIndex) => {
+            dispatch(updateModelByIndex({
+                index: selectedIndex
+            }));
+        },
+        [dispatch],
+    )
 
     return (
         <CarouselContainer onSelect={onSelect} activeIndex={activeIndex} images={images} /> 
