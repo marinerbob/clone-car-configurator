@@ -19,11 +19,13 @@ export const colors = {
 export const additionalChars = {
   'additional_char_1' : {
     label: 'Its char #1',
+    src: `${process.env.PUBLIC_URL}/transmissions/automatic-transmission.jpg`,
     price: 40000,
     value: 'additional_char_1'
   },
   'additional_char_2': {
     label: 'Its char #2',
+    src: `${process.env.PUBLIC_URL}/transmissions/mech-transmission.jpg`,
     price: 600000,
     value: 'additional_char_2'
   }

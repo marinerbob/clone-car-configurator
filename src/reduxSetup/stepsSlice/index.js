@@ -36,7 +36,7 @@ const initialState = {
       settings: [
         {
           label: 'Select additional char',
-          type: 'text',
+          type: 'image',
           prop: 'char',
           binding: 'chars',
           showPrice: true,
