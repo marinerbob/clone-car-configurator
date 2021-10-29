@@ -1,8 +1,7 @@
 import { createSelector } from "@reduxjs/toolkit";
 
 import { getSteps } from '../rootSlice/selectors';
-import { getCurrentCarModel } from '../currentConfigSlice/selectors';
-import { getCarsOptions } from '../modelsSlice/selectors';
+import { getCurrentCarModel, getCarsOptions } from '../currentConfigSlice/selectors';
 
 export const getCurrentStep = state => getSteps(state).currentStep;
 export const getAllStepsData = state => getSteps(state).stepsData;

@@ -7,7 +7,8 @@ import { getStepDataByModel } from "../reduxSetup/stepsSlice/selectors";
 
 import withStepsUpdate from "./withStepsUpdate";
 
-import Preview from "../components/preview";
+import ImageContainer from "../components/preview/imageContainer";
+import Carousel from "../components/carousel";
 import Configuration from "../components/configuration";
 import Summary from "../components/configuration/summary";
 
@@ -19,7 +20,8 @@ const Step = () => {
   return (
     <Row>
       <Col md="8">
-        <Preview slides={slides} />
+      {slides ? <Carousel modelBinding={slides !== 'cars' ? slides : null} /> : 
+        <ImageContainer />}
       </Col>
       <Col className="pt-md-3" md="4">
         {isLastStep ? (

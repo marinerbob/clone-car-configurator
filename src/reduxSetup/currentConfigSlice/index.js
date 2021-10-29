@@ -1,13 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { initialConfig, configModelMap, summaryFields } from '../../data';
-import { getPropByIndex } from './selectors';
+import { models, initialConfig, configModelMap, summaryFields } from '../../data';
 
 const initialState = {
     currentModel: "s",
     carConfig: initialConfig,
     configModelMap,
-    summaryFields
+    summaryFields,
+    models
 };
 
 const currentConfigSlice = createSlice({
@@ -20,10 +20,11 @@ const currentConfigSlice = createSlice({
                 let model = Object.keys(state.carConfig)[index];
                 state.currentModel = model;
             } else {
-                // const propVal = getPropByIndex(prop, index)(state);
-                // const model = state.currentModel;
+                const model = state.models[state.currentModel];
+                const performedPropName = state.configModelMap[prop] || prop;
+                const value = Object.keys(model[performedPropName])[index];
 
-                // state.carConfig[model][prop] = propVal;
+                state.carConfig[model.key][prop] = value;
             }
 
         },
