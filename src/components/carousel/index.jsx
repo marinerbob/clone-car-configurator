@@ -4,15 +4,15 @@ import Carousel from 'react-bootstrap/Carousel';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { updateConfig } from '../../reduxSetup/currentConfigSlice';
-import { getModelImages, getActiveCarouselIndex, getPropByIndex } from '../../reduxSetup/currentConfigSlice/selectors';
+import { updateModelByIndex } from '../../reduxSetup/currentConfigSlice';
+import { getModelImages, getActiveCarouselIndex } from '../../reduxSetup/currentConfigSlice/selectors';
 
 const CarouselContainer = ({ activeIndex, images, onSelect }) => (
     <Carousel onSelect={onSelect} activeIndex={activeIndex} variant="dark" indicators={false} interval={null}>
         { images && images.map(image => (
             <Carousel.Item key={image.alt}>
                 <img
-                    className="d-block w-100"
+                    className="d-block w-100 mh-50vh"
                     src={image.url}
                     alt={image.alt}
                     />
@@ -22,22 +22,18 @@ const CarouselContainer = ({ activeIndex, images, onSelect }) => (
 );
 
 
-const ConnectedCarousel = ({ modelBinding }) => {
+const ConnectedCarousel = ({ modelBinding = null }) => {
     const dispatch = useDispatch();
-    const modifiedBinding = modelBinding || 'cars';
 
-    const images = useSelector(getModelImages(modifiedBinding));
-    const activeIndex = useSelector(getActiveCarouselIndex(modifiedBinding));
+    const images = useSelector(getModelImages(modelBinding));
+    const activeIndex = useSelector(getActiveCarouselIndex(modelBinding));
 
-    const onSelect = useCallback(
-        (selectedIndex) => {
-            dispatch(updateConfig({
-                prop: modifiedBinding,
-                value: useSelector(getPropByIndex(modifiedBinding, selectedIndex))
+    const onSelect = useCallback((selectedIndex) => {
+            dispatch(updateModelByIndex({
+                index: selectedIndex,
+                prop: modelBinding
             }));
-        },
-        [dispatch, modifiedBinding],
-    );
+        }, [dispatch, modelBinding])
 
     return (
         <CarouselContainer onSelect={onSelect} activeIndex={activeIndex} images={images} /> 

@@ -5,7 +5,7 @@ import Carousel from '../carousel';
 
 const Preview = ({ slides }) => (
     <>
-        {slides ? <Carousel /> : 
+        {slides ? <Carousel modelBinding={slides !== 'cars' ? slides : null} /> : 
         <ImageContainer />}
     </>
 );

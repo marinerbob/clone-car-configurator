@@ -15,9 +15,9 @@ import './footer.css';
 const FooterContainer = () => {
   const { prevStepUrl, nextStepUrl } = useSelector(getCurrentStepUrl);
   const price = useSelector(getCurrentPrice);
+  const formattedPrice = price ? formatPrice(price) : '';
 
-
-  return (<Footer price={price} prevStepUrl={prevStepUrl} nextStepUrl={nextStepUrl} />);
+  return (<Footer price={formattedPrice} prevStepUrl={prevStepUrl} nextStepUrl={nextStepUrl} />);
 };
 
 const Footer = ({ prevStepUrl, nextStepUrl, price }) => (
@@ -31,7 +31,7 @@ const Footer = ({ prevStepUrl, nextStepUrl, price }) => (
         </Button>
       </Col>
       <Col>
-        <div className="price footer__price">{price ? formatPrice(price) : ''}</div>
+        <div className="price footer__price">{price}</div>
       </Col>
       <Col className="d-flex col-right">
         <Button disabled={nextStepUrl === null} className="footer__nav-btn">

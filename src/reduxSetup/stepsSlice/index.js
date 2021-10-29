@@ -8,7 +8,7 @@ const initialState = {
       label: 'Car configuration',
       prevStep: null,
       nextStep: 'add_char',
-      slides: 'model',
+      slides: 'cars',
       settings: [
         {
           label: 'Select car',
@@ -33,6 +33,7 @@ const initialState = {
       label: 'Additional Configuration',
       prevStep: 'car',
       nextStep: 'exterior',
+      slides: 'char',
       settings: [
         {
           label: 'Select additional char',
@@ -40,7 +41,7 @@ const initialState = {
           prop: 'char',
           binding: 'chars',
           showPrice: true,
-          modelBinding: null,
+          modelBinding: 'null',
         },
       ]
     },
