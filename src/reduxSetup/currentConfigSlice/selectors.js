@@ -41,16 +41,23 @@ export const getCurrentPropValue = prop => state => {
     return currentModel[performedPropName][currentProp];
 };
 
-export const getModelImages = currentModel => state => {
-    if (currentModel === 'cars') {
+export const getModelImages = prop => state => {
+    if (prop === null) {
         return getCarImages(state);
     }
 
-    const config = getConfig(state);
+    const model =  getCurrentCarModel(state);
+    const currentPropInfo = model[prop];
+
     let imagesData = [];
 
-    Object.keys(config).forEach((car, ind) => {
 
+    Object.keys(currentPropInfo).forEach((prop, ind) => {
+        imagesData.push({
+            url: prop.src,
+            alt: prop.label,
+            index: ind 
+        });
     });
 
     return imagesData;
@@ -73,12 +80,38 @@ export const getCarImages = createSelector(
     }
 );
 
-export const getActiveIndex = createSelector(
+export const getActiveCarouselIndex = prop => state => {
+    if (prop === null) {
+        return getActiveCarouselCarIndex(state);
+    }
+
+    const currentChoice = getCurrentPropValue(prop)(state);
+    const model =  getCurrentCarModel(state);
+    const currentPropInfo = model[prop];
+
+    return Object.keys(currentPropInfo).indexOf(currentChoice);
+};
+
+export const getActiveCarouselCarIndex = createSelector(
     [getCurrentModel, getConfig],
     (model, config) => {
         return Object.keys(config).indexOf(model);
     }
 );
+
+export const getPropByIndex = (prop, ind) => state => {
+    const models = getModels(state);
+
+    if (prop === null) {
+        return Object.values(models)[ind].key;
+    }
+
+    const currentCarModel = getCurrentCarModel(state);
+    const configModelMap = getConfigModelMap(state);
+    const performedPropName = configModelMap[prop] || prop;
+
+    return Object.values(currentCarModel[performedPropName])[ind].value;
+};
 
 export const getCurrentCarImage = createSelector(
     [getCurrentCarConfig],

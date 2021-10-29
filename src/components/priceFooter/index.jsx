@@ -16,6 +16,7 @@ const FooterContainer = () => {
   const { prevStepUrl, nextStepUrl } = useSelector(getCurrentStepUrl);
   const price = useSelector(getCurrentPrice);
 
+
   return (<Footer price={price} prevStepUrl={prevStepUrl} nextStepUrl={nextStepUrl} />);
 };
 

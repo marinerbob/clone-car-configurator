@@ -14,9 +14,14 @@ const currentConfigSlice = createSlice({
     initialState,
     reducers: {
         updateModelByIndex(state, action) {
-            let model = Object.keys(state.carConfig)[action.payload.index];
+            const { prop, index } = action.payload;
+            if (prop === 'cars') {
+                let model = Object.keys(state.carConfig)[index];
+                state.currentModel = model;
+            } else {
+                
+            }
 
-            state.currentModel = model;
         },
         updateModel(state, action) {
             state.currentModel = action.payload.model;
