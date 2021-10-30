@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useCallback } from 'react';
 
 import Carousel from 'react-bootstrap/Carousel';
 
@@ -32,18 +32,34 @@ const ConnectedCarousel = ({ modelBinding = null }) => {
     const images = useSelector(getModelImages(modelBinding));
     const activeIndex = useSelector(getActiveCarouselIndex(modelBinding));
 
-    const onSelect = (selectedIndex) => {
-            dispatch(updateModelByIndex({
-                index: selectedIndex,
-                prop: modelBinding
-            }));
-    };
+    const onSelect = useCallback((selectedIndex) => {
+        dispatch(updateModelByIndex({
+            index: selectedIndex,
+            prop: modelBinding
+        }));
+    }, [dispatch, modelBinding]);
+
+    console.log(activeIndex);
 
     return (
         <CarouselContainer onSelect={onSelect} activeIndex={activeIndex} images={images} /> 
     );
 };
 
+export const ConnectedCarCarousel = () => {
+    const dispatch = useDispatch();
+    const images = useSelector(getModelImages(null));
+    const activeIndex = useSelector(getActiveCarouselIndex(null));
 
+    const onSelect = useCallback((selectedIndex) => {
+        dispatch(updateModelByIndex({
+            index: selectedIndex,
+            prop: null }));
+    }, [dispatch]);
+
+    return (
+        <CarouselContainer onSelect={onSelect} activeIndex={activeIndex} images={images} /> 
+    );
+};
 
 export default ConnectedCarousel;

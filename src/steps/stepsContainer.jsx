@@ -9,7 +9,9 @@ import { getStepUrls } from '../reduxSetup/stepsSlice/selectors';
 
 const StepsContainer = () => {
     const stepUrlsConfig = useSelector(getStepUrls);
-    const firstUrl = stepUrlsConfig.find(step => step.isFirst).url;
+    const firstUrl = stepUrlsConfig.find(step => step.prevStep === null).url;
+
+    console.log(stepUrlsConfig);
 
     return (
         <Switch>

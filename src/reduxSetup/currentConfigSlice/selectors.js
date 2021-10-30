@@ -54,7 +54,7 @@ export const getCurrentPropValue = prop => state => {
     return currentModel[performedPropName][currentProp];
 };
 
-export const getModelImages = prop => state => {
+export const getModelImages = (prop = null) => state => {
     if (prop === null) {
         return getCarImages(state);
     }
@@ -95,7 +95,7 @@ export const getCarImages = createSelector(
     }
 );
 
-export const getActiveCarouselIndex = prop => state => {
+export const getActiveCarouselIndex = (prop = null) => state => {
     if (prop === null) {
         return getActiveCarouselCarIndex(state);
     }

@@ -25,9 +25,12 @@ export const getCurrentStepUrl = createSelector(
 export const getStepUrls = createSelector(
   [getAllStepsData],
   stepsData => Object.values(stepsData).map(step => ({
+    label: step.label,
     name: step.name,
     url: `/${step.name}`,
-    isFirst: step.prevStep === null
+    prevStep: step.prevStep,
+    nextStep: step.nextStep,
+    slides: step.slides
   }))
 );
 
@@ -43,9 +46,6 @@ export const getStepDataByModel = createSelector(
       return settingsOptions;
     });
 
-    return {
-      ...stepData,
-      settings: performedSettings
-    };
+    return performedSettings;
   } 
 );
