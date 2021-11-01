@@ -7,26 +7,20 @@ import { getModelImages, getActiveCarouselIndex } from '../../reduxSetup/current
 
 import CarouselContainer from './carouselContainer';
 
-import './carousel.css';
-
-const ConnectedCarousel = ({ modelBinding = null }) => {
+const ConnectedCarCarousel = () => {
     const dispatch = useDispatch();
-
-    const images = useSelector(getModelImages(modelBinding));
-    const activeIndex = useSelector(getActiveCarouselIndex(modelBinding));
+    const images = useSelector(getModelImages(null));
+    const activeIndex = useSelector(getActiveCarouselIndex(null));
 
     const onSelect = useCallback((selectedIndex) => {
         dispatch(updateModelByIndex({
             index: selectedIndex,
-            prop: modelBinding
-        }));
-    }, [dispatch, modelBinding]);
-
-    console.log(activeIndex);
+            prop: null }));
+    }, [dispatch]);
 
     return (
         <CarouselContainer onSelect={onSelect} activeIndex={activeIndex} images={images} /> 
     );
 };
 
-export default ConnectedCarousel;
+export default ConnectedCarCarousel

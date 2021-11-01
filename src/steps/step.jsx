@@ -8,7 +8,9 @@ import { getStepDataByModel } from "../reduxSetup/stepsSlice/selectors";
 import withStepsUpdate from "./withStepsUpdate";
 
 import ImageContainer from "../components/preview/imageContainer";
-import Carousel, { ConnectedCarCarousel } from "../components/carousel";
+import Carousel from "../components/carousel";
+import ConnectedCarCarousel from "../components/carousel/carCarousel";
+
 import Configuration from "../components/configuration";
 import Summary from "../components/configuration/summary";
 
